@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/task-container.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="icon" type="img/png" href="img/logoIcon.png">
+    <title>To-Do List</title>
+</head>
+
+<body>
+
+    <div class="app">
+        <header class="app__header">
+            <div class="container">
+                <div class="logo">To‑Do List ✓</div>
+                <button class="btn btn-add">Add</button>
+                <button class="burger" aria-label="menu">☰</button>
+            </div>
+            <div class="filters container">
+                <button class="filter active" data-filter="all">All</button>
+                <button class="filter" data-filter="active">Active</button>
+                <button class="filter" data-filter="completed">Completed</button>
+            </div>
+        </header>
+        <main class="app__main">
+            <div class="tasks-container">
+            </div>
+        </main>
+    </div>
+
+    <template class="template__task-element">
+        <div class="task-card" data-js-drop>
+            <div class="task-priority-strip"></div>
+            <div class="task-header">
+                <h3 class="task-title task-title-name"></h3>
+                <button class="task-delete" aria-label="Delete">×</button>
+            </div>
+            <p class="task-desc"></p>
+            <div class="task-footer">
+                <label class="task-check">
+                    <input type="checkbox" class="task-checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <span class="task-date"></span>
+            </div>
+        </div>
+    </template>
+
+    <!--Модальное окно-->
+    <div class="modal-overlay" id="addTaskModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Add a new task</h2>
+                <button class="modal-close" aria-label="Закрыть">×</button>
+            </div>
+            <form class="modal-form" id="taskForm">
+                <!--Название-->
+                <div class="form-group">
+                    <label for="taskTitle" class="form-label">Task name</label>
+                    <input type="text" id="taskTitle" class="form-input form-input-name-task"
+                        placeholder="For example: To wash the dishes" required>
+                </div>
+                <!--Описание-->
+                <div class="form-group">
+                    <label for="taskDescription" class="form-label">Description</label>
+                    <textarea id="taskDescription" class="form-textarea form-textarea-description-task"
+                        placeholder="What needs to be done?" rows="4"></textarea>
+                </div>
+                <!--Приоритет-->
+                <div class="form-group">
+                    <label class="form-label">Priority</label>
+                    <div class="priority-select">
+                        <label class="priority-option">
+                            <input type="radio" class="low-js" name="priority" value="low" checked>
+                            <span class="priority-badge low">Low</span>
+                        </label>
+                        <label class="priority-option">
+                            <input type="radio" class="medium-js" name="priority" value="medium">
+                            <span class="priority-badge medium">Medium</span>
+                        </label>
+                        <label class="priority-option">
+                            <input type="radio" class="high-js" name="priority" value="high">
+                            <span class="priority-badge high">High</span>
+                        </label>
+                    </div>
+                </div>
+                <!--Кнопки-->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel modal-close">Cancel</button>
+                    <button type="button" class="btn btn-save">Save a task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="js/main.js"></script>
+
+</html>

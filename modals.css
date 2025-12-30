@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(33, 40, 66, 0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: var(--cream);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: modalSlideUp 0.4s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Заголовок модалки */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(33, 40, 66, 0.1);
+    background: linear-gradient(135deg, var(--cream-soft), rgba(255, 255, 255, 0.8));
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--indigo);
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.modal-close {
+    background: rgba(33, 40, 66, 0.08);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    color: var(--indigo);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: 'Manrope', sans-serif;
+}
+
+.modal-close:hover {
+    background: rgba(33, 40, 66, 0.15);
+    transform: rotate(90deg);
+}
+
+/* Форма */
+.modal-form {
+    padding: 28px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--indigo);
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--cream-soft);
+    border: 2px solid rgba(33, 40, 66, 0.12);
+    border-radius: 14px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    color: var(--indigo);
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 8px rgba(33, 40, 66, 0.05);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--indigo);
+    box-shadow:
+        inset 0 2px 8px rgba(33, 40, 66, 0.08),
+        0 0 0 4px rgba(33, 40, 66, 0.08);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(33, 40, 66, 0.4);
+    font-weight: 400;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+/* Приоритет */
+.priority-select {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.priority-option {
+    cursor: pointer;
+    flex: 1;
+    min-width: 120px;
+}
+
+.priority-option input[type="radio"] {
+    display: none;
+}
+
+.priority-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: 52px;
+}
+
+/* Цвета приоритетов */
+.priority-badge.low {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+    color: #8b5cf6;
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+.priority-badge.medium {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.priority-badge.high {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Состояние выбранного приоритета */
+.priority-option input[type="radio"]:checked+.priority-badge.low {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    border-color: #8b5cf6;
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge.medium {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border-color: #f59e0b;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge.high {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Эффекты при наведении */
+.priority-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.priority-badge.low:hover {
+    border-color: #8b5cf6;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.08));
+}
+
+.priority-badge.medium:hover {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.08));
+}
+
+.priority-badge.high:hover {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.08));
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .priority-select {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .priority-option {
+        min-width: auto;
+    }
+
+    .priority-badge {
+        padding: 12px 16px;
+        height: 48px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .priority-badge {
+        padding: 10px 14px;
+        height: 44px;
+        font-size: 13px;
+    }
+}
+
+/* Анимация выбора */
+@keyframes priorityPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge {
+    animation: priorityPulse 0.6s ease;
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge.medium {
+    animation-name: priorityPulseMedium;
+}
+
+@keyframes priorityPulseMedium {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge.high {
+    animation-name: priorityPulseHigh;
+}
+
+@keyframes priorityPulseHigh {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Иконки для приоритетов (опционально) */
+.priority-badge::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.priority-badge.low::before {
+    background: #8b5cf6;
+}
+
+.priority-badge.medium::before {
+    background: #f59e0b;
+}
+
+.priority-badge.high::before {
+    background: #ef4444;
+}
+
+.priority-option input[type="radio"]:checked+.priority-badge::before {
+    background: white;
+    transform: scale(1.2);
+}
+
+
+
+/* Кнопки формы */
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(33, 40, 66, 0.1);
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 16px 24px;
+    background: rgba(33, 40, 66, 0.08);
+    color: var(--indigo);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+    background: rgba(33, 40, 66, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-save {
+    flex: 2;
+    padding: 16px 24px;
+    background: var(--indigo);
+    color: var(--cream);
+    border: none;
+    border-radius: 14px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 24px rgba(33, 40, 66, 0.2);
+}
+
+.btn-save:hover {
+    background: #2a3457;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(33, 40, 66, 0.3);
+}
+
+.btn-save:active {
+    transform: translateY(0);
+}
+
+/* Адаптивность модалки */
+@media (max-width: 768px) {
+    .modal-container {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 20px 24px;
+    }
+
+    .modal-title {
+        font-size: 24px;
+    }
+
+    .modal-form {
+        padding: 24px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-time {
+        padding: 14px 18px;
+        font-size: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-cancel,
+    .btn-save {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-container {
+        max-width: 100%;
+        border-radius: 16px;
+    }
+
+    .modal-header {
+        padding: 18px 20px;
+    }
+
+    .modal-title {
+        font-size: 22px;
+    }
+
+    .modal-form {
+        padding: 20px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-time {
+        padding: 12px 16px;
+        font-size: 15px;
+    }
+
+    .time-input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .form-time {
+        min-width: auto;
+    }
+
+    .time-hint {
+        text-align: center;
+    }
+}
+
+/* Анимация закрытия */
+@keyframes modalSlideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+}
+
+.modal-overlay.closing {
+    opacity: 0;
+}
+
+.modal-overlay.closing .modal-container {
+    animation: modalSlideDown 0.3s ease-in forwards;
+}
