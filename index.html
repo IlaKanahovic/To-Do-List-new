@@ -17,14 +17,14 @@
     <div class="app">
         <header class="app__header">
             <div class="container">
-                <div class="logo">To‑Do List ✓</div>
-                <button class="btn btn-add">Add</button>
+                <div class="logo">Список дел ✓</div>
+                <button class="btn btn-add">Добавить задачу</button>
                 <button class="burger" aria-label="menu">☰</button>
             </div>
             <div class="filters container">
-                <button class="filter active" data-filter="all">All</button>
-                <button class="filter" data-filter="active">Active</button>
-                <button class="filter" data-filter="completed">Completed</button>
+                <button class="filter active" data-filter="all">Все</button>
+                <button class="filter" data-filter="active">Активные</button>
+                <button class="filter" data-filter="completed">Выполненные</button>
             </div>
         </header>
         <main class="app__main">
@@ -55,44 +55,44 @@
     <div class="modal-overlay" id="addTaskModal">
         <div class="modal-container">
             <div class="modal-header">
-                <h2 class="modal-title">Add a new task</h2>
+                <h2 class="modal-title">Добавить новую задачу</h2>
                 <button class="modal-close" aria-label="Закрыть">×</button>
             </div>
             <form class="modal-form" id="taskForm">
                 <!--Название-->
                 <div class="form-group">
-                    <label for="taskTitle" class="form-label">Task name</label>
+                    <label for="taskTitle" class="form-label">Название задачи</label>
                     <input type="text" id="taskTitle" class="form-input form-input-name-task"
-                        placeholder="For example: To wash the dishes" required>
+                        placeholder="Например: помыть посуду" required>
                 </div>
                 <!--Описание-->
                 <div class="form-group">
-                    <label for="taskDescription" class="form-label">Description</label>
+                    <label for="taskDescription" class="form-label">Описание</label>
                     <textarea id="taskDescription" class="form-textarea form-textarea-description-task"
-                        placeholder="What needs to be done?" rows="4"></textarea>
+                        placeholder="Что вы хотите сделать?" rows="4"></textarea>
                 </div>
                 <!--Приоритет-->
                 <div class="form-group">
-                    <label class="form-label">Priority</label>
+                    <label class="form-label">Приоритет</label>
                     <div class="priority-select">
                         <label class="priority-option">
                             <input type="radio" class="low-js" name="priority" value="low" checked>
-                            <span class="priority-badge low">Low</span>
+                            <span class="priority-badge low">Низкий</span>
                         </label>
                         <label class="priority-option">
                             <input type="radio" class="medium-js" name="priority" value="medium">
-                            <span class="priority-badge medium">Medium</span>
+                            <span class="priority-badge medium">Средний</span>
                         </label>
                         <label class="priority-option">
                             <input type="radio" class="high-js" name="priority" value="high">
-                            <span class="priority-badge high">High</span>
+                            <span class="priority-badge high">Высокий</span>
                         </label>
                     </div>
                 </div>
                 <!--Кнопки-->
                 <div class="form-actions">
-                    <button type="button" class="btn btn-cancel modal-close">Cancel</button>
-                    <button type="button" class="btn btn-save">Save a task</button>
+                    <button type="button" class="btn btn-cancel modal-close">Отмена</button>
+                    <button type="button" class="btn btn-save">Сохранить задачу</button>
                 </div>
             </form>
         </div>
@@ -102,3 +102,4 @@
 
 
 </html>
+
